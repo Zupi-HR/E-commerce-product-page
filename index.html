@@ -14,7 +14,7 @@
 
 <body>
   <header>
-    <img src="images/logo.svg" alt="Sneakers Company Logo">
+    <a href="#"><img src="images/logo.svg" alt="Sneakers Company Logo"></a>
     <nav>
       <ul>
         <li><a href="#">Collections</a></li>
@@ -24,24 +24,69 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </nav>
+    <div class="user-controls">
+      <button type="button" aria-label="View Cart"><img src="images/icon-cart.svg" alt=""></button>
+      <button type="button" aria-label="User profile menu"><img src="images/image-avatar.png" alt=""></button>
+    </div>
   </header>
+  <dialog class="cart-modal">
+    <h2>Cart</h2>
+    <div class="product-details">
+      <img src="images/image-product-1-thumbnail.jpg" alt="">
+      <div>
+        <p>Fall Limited Edition Sneakers</p>
+        <p>$125.00 x <span class="cart-quantity">3</span> <strong class="cart-total">$375.00</strong></p>
+      </div>
+      <button type="button" aria-label="Remove item from cart"><img src="images/icon-delete.svg" alt=""></button>
+    </div>
+    <button type="button">Checkout</button>
+  </dialog>
 
   <main>
-    <hgroup>
-      <p>Sneaker Company</p>
-      <h1>Fall Limited Edition Sneakers</h1>
-    </hgroup>
-    <p>
-      These low-profile sneakers are your perfect casual wear companion. Featuring a
-      durable rubber outer sole, they’ll withstand everything the weather can offer.
-    </p>
-    <div class="pricing-wrapper">
-      <p><span class="sr-only">Current price:</span> <data value="125">$125.00</data></p>
-      <span><span class="sr-only">Discount:</span> 50%</span>
-      <p><span class="sr-only">Original price:</span> <s><data value="250">$250.00</data></s></p>
-    </div>
-    0
-    <button type="button">Add to cart</button>
+    <section class="image-gallery" aria-label="Product image gallery">
+      <div class="main-image">
+        <button type="button" aria-label="Previous image"><img src="images/icon-previous.svg" alt=""></button>
+        <img src="images/image-product-1.jpg"
+          alt="Pair of white and beige low-profile sneakers with orange accents, one resting against the other">
+        <button type="button" aria-label="Next image"><img src="images/icon-next.svg" alt=""></button>
+      </div>
+      <ul class="images">
+        <li><button type="button" aria-label="View product image 1"><img src="images/image-product-1-thumbnail.jpg"
+              alt=""></button>
+        </li>
+        <li><button type="button" aria-label="View product image 2"><img src="images/image-product-2-thumbnail.jpg"
+              alt=""></button></li>
+        <li><button type="button" aria-label="View product image 3"><img src="images/image-product-3-thumbnail.jpg"
+              alt=""></button></li>
+        <li><button type="button" aria-label="View product image 4"><img src="images/image-product-4-thumbnail.jpg"
+              alt=""></button></li>
+      </ul>
+    </section>
+    <section class="product-info" aria-label="Product info">
+      <hgroup>
+        <p>Sneaker Company</p>
+        <h1>Fall Limited Edition Sneakers</h1>
+      </hgroup>
+      <p>
+        These low-profile sneakers are your perfect casual wear companion. Featuring a
+        durable rubber outer sole, they’ll withstand everything the weather can offer.
+      </p>
+      <div class="pricing-wrapper">
+        <p><span class="sr-only">Current price:</span> <data value="125">$125.00</data></p>
+        <span><span class="sr-only">Discount:</span> 50%</span>
+        <p><span class="sr-only">Original price:</span> <s><data value="250">$250.00</data></s></p>
+      </div>
+      <form class="add-to-cart-form" action="#">
+        <div class="quantity-controls">
+          <button id="decrease-btn" type="button" aria-label="Decrease quantity"><img src="images/icon-minus.svg"
+              alt=""></button>
+          <input type="number" min="0" value="0" aria-label="Quantity">
+          <button id="increase-btn" type="button" aria-label="Increase quantity"><img src="images/icon-plus.svg"
+              alt=""></button>
+        </div>
+        <button type="submit">Add to cart</button>
+      </form>
+    </section>
   </main>
 
 </body>
