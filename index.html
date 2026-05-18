@@ -49,13 +49,14 @@
         </button>
       </div>
     </header>
-    <dialog class="cart-modal">
-      <h2>Cart</h2>
+    <dialog class="cart-modal" aria-labelledby="cart-heading">
+      <h2 id="cart-heading">Cart</h2>
       <div class="empty-cart">
         <p>Your cart is empty</p>
       </div>
+      <ul class="cart-items-list"></ul>
       <template id="cart-filled-template">
-        <div class="product-details">
+        <li class="product-details">
           <img class="cart-item-img" src="" alt="" />
 
           <div class="product-info">
@@ -78,10 +79,9 @@
           <button type="button" aria-label="Remove item from cart">
             <img src="images/icon-delete.svg" alt="" />
           </button>
-        </div>
-
-        <button type="button" class="checkout-btn">Checkout</button>
+        </li>
       </template>
+      <button type="button" class="checkout-btn">Checkout</button>
     </dialog>
 
     <main>
