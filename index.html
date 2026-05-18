@@ -14,8 +14,14 @@
 
 <body>
   <header>
+    <button type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <img src="images/icon-menu.svg" alt="">
+    </button>
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
     <a href="#"><img src="images/logo.svg" alt="Sneakers Company Logo"></a>
-    <nav>
+    <nav id="mobile-menu">
+      <button type="button" id="close-menu-btn" aria-label="Close menu"><img src="images/icon-close.svg"
+          alt=""></button>
       <ul>
         <li><a href="#">Collections</a></li>
         <li><a href="#">Men</a></li>
@@ -25,21 +31,28 @@
       </ul>
     </nav>
     <div class="user-controls">
-      <button type="button" aria-label="View Cart"><img src="images/icon-cart.svg" alt=""></button>
+      <button type="button" aria-label="View Cart"><img src="images/icon-cart.svg" alt="">
+        <span class="cart-quantity" aria-hidden="true">3</span></button>
       <button type="button" aria-label="User profile menu"><img src="images/image-avatar.png" alt=""></button>
     </div>
   </header>
   <dialog class="cart-modal">
     <h2>Cart</h2>
-    <div class="product-details">
-      <img src="images/image-product-1-thumbnail.jpg" alt="">
-      <div>
-        <p>Fall Limited Edition Sneakers</p>
-        <p>$125.00 x <span class="cart-quantity">3</span> <strong class="cart-total">$375.00</strong></p>
-      </div>
-      <button type="button" aria-label="Remove item from cart"><img src="images/icon-delete.svg" alt=""></button>
+    <div class="empty-cart">
+      <p>Your cart is empty</p>
     </div>
-    <button type="button">Checkout</button>
+    <template id="cart-filled-template">
+      <div class="product-details">
+        <img class="cart-item-img" src="" alt="">
+        <div>
+          <p class="cart-item-title"></p>
+          <p>$125.00 x <span class="cart-quantity"></span> <strong class="cart-total"></strong></p>
+        </div>
+        <button type="button" aria-label="Remove item from cart"><img src="images/icon-delete.svg" alt=""></button>
+      </div>
+      <button type="button">Checkout</button>
+    </template>
+
   </dialog>
 
   <main>
