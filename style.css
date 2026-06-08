@@ -3,100 +3,100 @@
    ========================================= */
 
 :root {
-   /* =========================================
+  /* =========================================
      1. BASE TOKENS (Primitives)
      ========================================= */
 
-   /* Colors */
-   --color-white: hsl(0, 100%, 100%);
-   --color-black: hsl(0, 0%, 0%);
+  /* Colors */
+  --color-white: hsl(0, 100%, 100%);
+  --color-black: hsl(0, 0%, 0%);
 
-   --color-grey-950: hsl(220, 13%, 13%);
-   --color-grey-500: hsl(219, 9%, 45%);
-   --color-grey-300: hsl(221, 22%, 81%);
-   --color-grey-100: hsl(219, 35%, 92%);
-   --color-grey-50: hsl(223, 64%, 98%);
+  --color-grey-950: hsl(220, 13%, 13%);
+  --color-grey-500: hsl(219, 9%, 45%);
+  --color-grey-300: hsl(221, 22%, 81%);
+  --color-grey-100: hsl(219, 35%, 92%);
+  --color-grey-50: hsl(223, 64%, 98%);
 
-   --color-orange-500: hsl(26, 100%, 55%);
-   --color-orange-300: hsl(26, 100%, 71%);
+  --color-orange-500: hsl(26, 100%, 55%);
+  --color-orange-300: hsl(26, 100%, 71%);
 
-   /* Typography */
-   --font-family-base: "Kumbh Sans", sans-serif;
-   --font-weight-regular: 400;
-   --font-weight-bold: 700;
+  /* Typography */
+  --font-family-base: "Kumbh Sans", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
 
-   --fs-preset-1: 2.75rem;
-   --fs-preset-2: 1.75rem;
-   --fs-preset-3: 1rem;
-   --fs-preset-4: 0.9375rem;
-   --fs-preset-5: 0.8125rem;
-   --fs-preset-6: 0.75rem;
+  --fs-preset-1: 2.75rem;
+  --fs-preset-2: 1.75rem;
+  --fs-preset-3: 1rem;
+  --fs-preset-4: 0.9375rem;
+  --fs-preset-5: 0.8125rem;
+  --fs-preset-6: 0.75rem;
 
-   --lh-preset-1: 1.09;
-   --lh-preset-2: 1.14;
-   --lh-preset-3: 1.625;
-   --lh-preset-5: 1.23;
-   --lh-preset-6: 1.25;
+  --lh-preset-1: 1.09;
+  --lh-preset-2: 1.14;
+  --lh-preset-3: 1.625;
+  --lh-preset-5: 1.23;
+  --lh-preset-6: 1.25;
 
-   --ls-preset-5: 0.15em;
-   --ls-preset-6: 0.15em;
+  --ls-preset-5: 0.15em;
+  --ls-preset-6: 0.15em;
 
-   /* Spacing */
-   --spacing-0: 0;
-   --spacing-100: 0.5rem;
-   --spacing-200: 1rem;
-   --spacing-300: 1.5rem;
-   --spacing-400: 2rem;
-   --spacing-500: 2.5rem;
-   --spacing-600: 3rem;
-   --spacing-700: 3.5rem;
-   --spacing-900: 4.5rem;
-   --spacing-1000: 5rem;
-   --spacing-1200: 6rem;
-   --spacing-1300: 6.5rem;
-   --spacing-1600: 8rem;
+  /* Spacing */
+  --spacing-0: 0;
+  --spacing-100: 0.5rem; /* 8px */
+  --spacing-200: 1rem; /* 16px */
+  --spacing-300: 1.5rem; /* 24px */
+  --spacing-400: 2rem; /* 32px */
+  --spacing-500: 2.5rem; /* 40px */
+  --spacing-600: 3rem; /* 48px */
+  --spacing-700: 3.5rem; /* 56px */
+  --spacing-900: 4.5rem; /* 72px */
+  --spacing-1000: 5rem; /* 80px */
+  --spacing-1200: 6rem; /* 96px */
+  --spacing-1300: 6.5rem; /* 104px */
+  --spacing-1600: 8rem; /* 128px */
 
-   /* =========================================
+  /* =========================================
      2. SEMANTIC TOKENS (Aliases)
      ========================================= */
 
-   /* Semantic Colors */
-   --color-primary: var(--color-orange-500);
-   --color-primary-hover: var(--color-orange-300);
+  /* Semantic Colors */
+  --color-primary: var(--color-orange-500);
+  --color-primary-hover: var(--color-orange-300);
 
-   --bg-main: var(--color-white);
-   --bg-surface: var(--color-grey-50);
-   /* Used for light gray backgrounds, like carts or image gallery */
+  --bg-main: var(--color-white);
+  --bg-surface: var(--color-grey-50);
+  /* Used for light gray backgrounds, like carts or image gallery */
 
-   --text-primary: var(--color-grey-950);
-   /* Main headings and important text */
-   --text-secondary: var(--color-grey-500);
-   /* Paragraphs, descriptions, subtitles */
-   --text-inverse: var(--color-white);
-   /* Text on dark or primary backgrounds */
+  --text-primary: var(--color-grey-950);
+  /* Main headings and important text */
+  --text-secondary: var(--color-grey-500);
+  /* Paragraphs, descriptions, subtitles */
+  --text-inverse: var(--color-white);
+  /* Text on dark or primary backgrounds */
 
-   --border-subtle: var(--color-grey-100);
-   /* Dividers and light borders */
-   --border-strong: var(--color-grey-300);
-   /* Inputs or active states */
+  --border-subtle: var(--color-grey-100);
+  /* Dividers and light borders */
+  --border-strong: var(--color-grey-300);
+  /* Inputs or active states */
 
-   /* Semantic Typography */
-   --fs-heading-lg: var(--fs-preset-1);
-   /* Product Title */
-   --fs-heading-md: var(--fs-preset-2);
-   /* Prices, Section Headings */
+  /* Semantic Typography */
+  --fs-heading-lg: var(--fs-preset-1);
+  /* Product Title */
+  --fs-heading-md: var(--fs-preset-2);
+  /* Prices, Section Headings */
 
-   --fs-body: var(--fs-preset-3);
-   /* Standard paragraph text */
-   --fs-body-sm: var(--fs-preset-4);
-   /* Small text blocks */
+  --fs-body: var(--fs-preset-3);
+  /* Standard paragraph text */
+  --fs-body-sm: var(--fs-preset-4);
+  /* Small text blocks */
 
-   --fs-label: var(--fs-preset-5);
-   /* Uppercase labels, like "SNEAKER COMPANY" */
-   --fs-badge: var(--fs-preset-6);
-   /* Cart quantity bubbles, discount tags */
+  --fs-label: var(--fs-preset-5);
+  /* Uppercase labels, like "SNEAKER COMPANY" */
+  --fs-badge: var(--fs-preset-6);
+  /* Cart quantity bubbles, discount tags */
 
-   /* Note on Spacing: 
+  /* Note on Spacing: 
      Numerical spacing (100, 200, etc.) is actually considered semantic enough 
      in modern CSS architecture (like Tailwind). We usually link them directly 
      unless you want component-specific aliases like `--padding-btn: var(--spacing-200);` 
@@ -105,10 +105,10 @@
 
 /* BASE STYLES */
 body {
-   font-family: var(--font-family-base);
-   font-size: var(--fs-body);
-   color: var(--text-primary);
-   background-color: var(--bg-main);
+  font-family: var(--font-family-base);
+  font-size: var(--fs-body);
+  color: var(--text-primary);
+  background-color: var(--bg-main);
 }
 
 h1,
@@ -117,182 +117,229 @@ h3,
 h4,
 h5,
 h6 {
-   color: var(--text-primary);
-   font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
 }
 
 h1 {
-   font-size: var(--fs-heading-lg);
-   line-height: var(--lh-preset-1);
+  font-size: var(--fs-heading-lg);
+  line-height: var(--lh-preset-1);
 }
 
 h2 {
-   font-size: var(--fs-heading-md);
-   line-height: var(--lh-preset-2);
+  font-size: var(--fs-heading-md);
+  line-height: var(--lh-preset-2);
 }
 
 p {
-   color: var(--text-secondary);
+  color: var(--text-secondary);
 }
 
 a {
-   text-decoration: none;
+  text-decoration: none;
 }
 
 button {
-   cursor: pointer;
-   border: none;
-   background-color: transparent;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0;
 }
 
 .sr-only {
-   clip: rect(1px, 1px, 1px, 1px);
-   clip-path: inset(50%);
-   height: 1px;
-   width: 1px;
-   margin: -1px;
-   overflow: hidden;
-   padding: 0;
-   position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
 }
 
 .header {
-   display: flex;
-   align-items: center;
-   gap: var(--spacing-100);
-   padding: var(--spacing-300);
-   position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  padding: var(--spacing-300);
+  position: relative;
+}
+
+.menu-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
 }
 
 .header__nav {
-   display: none;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: var(--spacing-300);
+  background-color: var(--bg-main);
+  z-index: 50;
+  width: 65vw;
+  max-width: 250px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in;
+}
+
+.header__close-btn {
+  margin-bottom: var(--spacing-700);
+}
+
+.header__nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.header__nav a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-bold);
 }
 
 .header__user-controls {
-   margin-left: auto;
-   display: flex;
-   align-items: center;
-   gap: var(--spacing-200);
-   flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+  flex-shrink: 0;
 }
 
 .header__avatar-btn {
-   min-width: 44px;
-   min-height: 44px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header__avatar-btn img {
-   width: 24px;
-   height: 24px;
-   border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 }
 
 .cart-dropdown {
-   position: absolute;
-   top: calc(100% + 35px);
-   left: var(--spacing-100);
-   right: var(--spacing-100);
-   z-index: 10;
-   background-color: var(--color-white);
-   border-radius: 10px;
-   box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.25);
-   padding: var(--spacing-300) 0;
+  position: absolute;
+  top: calc(100% + 35px);
+  left: var(--spacing-100);
+  right: var(--spacing-100);
+  z-index: 10;
+  background-color: var(--color-white);
+  border-radius: 10px;
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.25);
+  padding: var(--spacing-300) 0;
 
-   opacity: 1;
-   visibility: visible;
-   transform: translateY(0);
-   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s;
 }
 
 .header__cart-btn {
-   position: relative;
+  position: relative;
 }
 
 .cart-quantity {
-   position: absolute;
-   top: -5px;
-   right: -6px;
-   min-width: 19px;
-   padding: 0 6px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   background-color: var(--color-primary);
-   color: var(--text-inverse);
-   border-radius: 1rem;
-   font-size: 10px;
-   font-weight: var(--font-weight-bold);
+  position: absolute;
+  top: -5px;
+  right: -6px;
+  min-width: 19px;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: var(--text-inverse);
+  border-radius: 1rem;
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
 }
 
-.header__cart-btn[aria-expanded="false"]~.cart-dropdown {
-   opacity: 0;
-   visibility: hidden;
-   transform: translateY(-10px);
+.header__cart-btn[aria-expanded="false"] ~ .cart-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
 }
 
 #cart-heading {
-   color: var(--color-grey-950);
-   font-size: var(--fs-preset-3);
-   padding: 0 var(--spacing-100) var(--spacing-300);
-   border-bottom: 1px solid var(--border-subtle);
+  color: var(--color-grey-950);
+  font-size: var(--fs-preset-3);
+  padding: 0 var(--spacing-100) var(--spacing-300);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .empty-cart {
-   min-height: 136px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-weight: var(--font-weight-bold);
-   display: none;
+  min-height: 136px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  display: none;
 }
 
 .cart-item {
-   display: flex;
-   align-items: center;
-   gap: 16px;
-
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .cart-item-info {
-   flex: 1;
-   display: flex;
-   flex-direction: column;
-   gap: var(--spacing-100);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
 }
 
 .cart-items-list {
-   margin: 0;
-   padding: var(--spacing-300);
+  margin: 0;
+  padding: var(--spacing-300);
 }
 
 .cart-item-img {
-   width: 50px;
-   height: 50px;
-   border-radius: 4px;
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
 }
-
 
 .price-value,
 .quantity-value {
-   color: var(--text-secondary);
+  color: var(--text-secondary);
 }
 
 .cart-total {
-   color: var(--text-primary);
-   font-weight: var(--font-weight-bold);
-
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
 }
 
 .checkout-btn {
-   background-color: var(--color-orange-500);
-   color: var(--text-primary);
-   font-weight: var(--font-weight-bold);
-   display: block;
-   width: calc(100% - var(--spacing-300) *2);
-   margin: 0 auto;
-   padding: var(--spacing-200) 0;
-   border-radius: 10px;
+  background-color: var(--color-orange-500);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
+  display: block;
+  width: calc(100% - var(--spacing-300) * 2);
+  margin: 0 auto;
+  padding: var(--spacing-200) 0;
+  border-radius: 10px;
 }
