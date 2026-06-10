@@ -360,3 +360,44 @@ body.menu-is-open .header__nav {
   padding: var(--spacing-200) 0;
   border-radius: 10px;
 }
+
+.images {
+  display: none;
+}
+
+.main-image {
+  position: relative;
+}
+
+.main-image__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: var(--bg-main);
+  border-radius: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-image__btn:hover svg {
+  color: var(--color-primary-hover);
+}
+
+.main-image__btn--prev {
+  left: var(--spacing-200);
+}
+
+.main-image__btn--prev svg {
+  transform: translateX(-2px);
+}
+
+.main-image__btn--next {
+  right: var(--spacing-200);
+}
+
+.main-image__btn--next svg {
+  transform: translateX(2px);
+}
