@@ -428,5 +428,8 @@ hgroup p {
 
 hgroup h1 {
   font-size: var(--fs-heading-md);
-  color: var(--text-primary);
+}
+
+.product-details__desc {
+  line-height: var(--lh-preset-3);
 }
