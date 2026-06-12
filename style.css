@@ -433,3 +433,17 @@ hgroup h1 {
 .product-details__desc {
   line-height: var(--lh-preset-3);
 }
+
+.pricing-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pricing-wrapper__current {
+  display: flex;
+  gap: var(--spacing-100);
+}
+
+data[value="125"] {
+  font-size: var(--fs-preset-2);
+}
