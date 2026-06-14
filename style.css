@@ -150,6 +150,19 @@ button {
   padding: 0;
 }
 
+.btn-primary {
+  background-color: var(--color-orange-500);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+  justify-content: center;
+  width: 100%;
+  padding: var(--spacing-200) 0;
+  border-radius: 10px;
+}
+
 .sr-only {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
@@ -351,14 +364,8 @@ body.menu-is-open .header__nav {
 }
 
 .checkout-btn {
-  background-color: var(--color-orange-500);
-  color: var(--text-primary);
-  font-weight: var(--font-weight-bold);
-  display: block;
   width: calc(100% - var(--spacing-300) * 2);
   margin: 0 auto;
-  padding: var(--spacing-200) 0;
-  border-radius: 10px;
 }
 
 .images {
@@ -437,13 +444,62 @@ hgroup h1 {
 .pricing-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-block: var(--spacing-400);
 }
 
 .pricing-wrapper__current {
   display: flex;
+  align-items: center;
   gap: var(--spacing-100);
 }
 
-data[value="125"] {
+.pricing-wrapper__price {
   font-size: var(--fs-preset-2);
+}
+
+.pricing-wrapper__current > span {
+  background-color: var(--text-primary);
+  color: var(--bg-main);
+  padding-inline: var(--spacing-200);
+  padding-block: var(--spacing-100);
+  border-radius: 6px;
+  font-weight: var(--font-weight-bold);
+}
+
+.pricing-wrapper__original s {
+  font-weight: var(--font-weight-bold);
+}
+
+.add-to-cart-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+.quantity-controls {
+  background-color: var(--bg-surface);
+  border-radius: 10px;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity-controls input[type="number"]::-webkit-outer-spin-button,
+.quantity-controls input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0px;
+}
+
+.quantity-controls input[type="number"] {
+  -moz-appearance: textfield;
+  border: none;
+  background-color: inherit;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+.quantity-btn {
+  color: var(--color-primary);
 }
