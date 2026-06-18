@@ -503,3 +503,20 @@ hgroup h1 {
 .quantity-btn {
   color: var(--color-primary);
 }
+
+@media (width >= 700px) {
+  .header {
+    position: static;
+  }
+
+  .header__user-controls {
+    position: relative;
+  }
+
+  .cart-dropdown {
+    left: auto;
+    width: 360px;
+    top: calc(100% + 15px);
+    right: -30px;
+  }
+}
