@@ -520,3 +520,34 @@ hgroup h1 {
     right: -30px;
   }
 }
+
+@media (width >= 1024px) {
+  .header__menu-btn {
+    display: none;
+  }
+
+  .header__close-btn {
+    display: none;
+  }
+
+  .header__nav {
+    height: auto;
+    display: flex;
+    padding: 0;
+    background-color: inherit;
+    transform: none;
+    transition: transform 0.3s ease-in;
+    width: auto;
+    max-width: none;
+    position: static;
+    z-index: 1;
+  }
+
+  .menu-overlay {
+    display: none;
+  }
+
+  .header__nav ul {
+    flex-direction: row;
+  }
+}
