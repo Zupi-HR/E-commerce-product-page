@@ -422,6 +422,7 @@ main {
 .product-details {
   margin-top: var(--spacing-300);
   padding-inline: var(--spacing-300);
+  padding-bottom: var(--spacing-600);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-200);
@@ -464,6 +465,8 @@ hgroup h1 {
 
 .pricing-wrapper__price {
   font-size: var(--fs-preset-2);
+  color: var(--color-grey-950);
+  font-weight: var(--font-weight-bold);
 }
 
 .pricing-wrapper__current > span {
@@ -553,6 +556,25 @@ hgroup h1 {
 
   .image-gallery {
     margin-block: var(--spacing-600);
+  }
+
+  .pricing-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .add-to-cart-form {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .quantity-btn {
+    flex-shrink: 0;
+  }
+
+  .btn-primary {
+    flex: 1;
   }
 }
 
