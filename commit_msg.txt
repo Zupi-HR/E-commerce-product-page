@@ -1,0 +1,14 @@
+Refactor layout to use a scalable container approach
+
+Hey team! I've wrapped up the core mobile and tablet design foundation.
+Here's what is currently built:
+- Mobile-first CSS architecture with design tokens
+- Semantic HTML including <template>, <data>, and aria-attributes
+- ARIA-driven cart dropdown logic
+- Tablet layout using a reusable .container wrapper class
+
+Next steps & where you can jump in:
+1. Desktop Layout: The base and tablet CSS is solid. You can start building out the @media (width >= 1024px) block in style.css to flesh out the desktop grid and lightbox.
+2. JavaScript Logic: The script.js is open. We need to wire up the add-to-cart buttons, cart quantity state, and the image gallery thumbnails!
+
+Let me know which part you want to tackle!
