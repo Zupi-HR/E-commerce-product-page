@@ -8,7 +8,9 @@ const mainImg = document.querySelector(".main-image img");
 const prevImgBtn = document.querySelector(".main-image__btn--prev");
 const nextImgBtn = document.querySelector(".main-image__btn--next");
 let lastFocusedElement = null;
-const focusableMenuElements = document.querySelectorAll(".header__nav ul li");
+const focusableMenuElements = document.querySelectorAll(
+  ".header__close-btn,.header__nav ul li a",
+);
 let currentIndex = 0;
 
 const images = [
@@ -18,23 +20,23 @@ const images = [
   "images/image-product-4.jpg",
 ];
 
-function trapMenuFocus() {
+function trapMenuFocus(e) {
+  if (e.key !== "Tab") return;
   if (focusableMenuElements.length > 0) {
-    const currentFocusedEl = document.activeElement;
     const firstFocusableEl = focusableMenuElements[0];
     const lastFocusableEl =
       focusableMenuElements[focusableMenuElements.length - 1];
-    if (currentFocusedEl === lastFocusableEl) {
+    if (e.shiftKey && document.activeElement === firstFocusableEl) {
+      e.preventDefault();
+      lastFocusableEl.focus();
+    } else if (!e.shiftKey && document.activeElement === lastFocusableEl) {
+      e.preventDefault();
       firstFocusableEl.focus();
     }
   }
 }
 
-headerNav.addEventListener("keydown", (e) => {
-  if (e.key === "Tab") {
-    trapMenuFocus();
-  }
-});
+headerNav.addEventListener("keydown", trapMenuFocus);
 
 function closeMenuButton() {
   body.classList.remove("menu-is-open");
