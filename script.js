@@ -1,11 +1,14 @@
 const cartBtn = document.querySelector(".header__cart-btn");
 const body = document.querySelector("body");
+const headerNav = document.querySelector(".header__nav");
 const openMenuBtn = document.querySelector(".header__menu-btn");
 const closeMenuBtn = document.getElementById("close-menu-btn");
 const overlay = document.getElementById("menu-overlay");
 const mainImg = document.querySelector(".main-image img");
 const prevImgBtn = document.querySelector(".main-image__btn--prev");
 const nextImgBtn = document.querySelector(".main-image__btn--next");
+let lastFocusedElement = null;
+const focusableMenuElements = document.querySelectorAll(".header__nav ul li");
 let currentIndex = 0;
 
 const images = [
@@ -15,12 +18,33 @@ const images = [
   "images/image-product-4.jpg",
 ];
 
+function trapMenuFocus() {
+  if (focusableMenuElements.length > 0) {
+    const currentFocusedEl = document.activeElement;
+    const firstFocusableEl = focusableMenuElements[0];
+    const lastFocusableEl =
+      focusableMenuElements[focusableMenuElements.length - 1];
+    if (currentFocusedEl === lastFocusableEl) {
+      firstFocusableEl.focus();
+    }
+  }
+}
+
+headerNav.addEventListener("keydown", (e) => {
+  if (e.key === "Tab") {
+    trapMenuFocus();
+  }
+});
+
 function closeMenuButton() {
   body.classList.remove("menu-is-open");
   openMenuBtn.setAttribute("aria-expanded", "false");
+  lastFocusedElement.focus();
 }
 
-function openMenuButton() {
+function openMenuButton(e) {
+  lastFocusedElement = document.activeElement;
+  closeMenuBtn.focus();
   body.classList.add("menu-is-open");
   openMenuBtn.setAttribute("aria-expanded", "true");
 }

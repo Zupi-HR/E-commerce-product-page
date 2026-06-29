@@ -115,6 +115,11 @@ body.menu-is-open {
   overflow: hidden;
 }
 
+.container {
+  max-width: 1110px;
+  margin: 0 auto;
+}
+
 h1,
 h2,
 h3,
@@ -180,8 +185,6 @@ button {
   gap: var(--spacing-200);
   padding: var(--spacing-300);
   position: relative;
-  max-width: 1110px;
-  margin: 0 auto;
 }
 
 .header__menu-btn {
@@ -371,11 +374,6 @@ body.menu-is-open .header__nav {
   margin: 0 auto;
 }
 
-main {
-  max-width: 1110px;
-  margin: 0 auto;
-}
-
 .images {
   display: none;
 }
@@ -516,12 +514,14 @@ hgroup h1 {
 }
 
 @media (width >= 700px) {
+  .container {
+    max-width: 608px;
+  }
+
   .header {
     position: static;
     border-bottom: 1px solid var(--border-subtle);
-    width: calc(100% - 48px);
     padding-inline: 0;
-    max-width: 608px;
   }
 
   .header__user-controls {
@@ -539,11 +539,6 @@ hgroup h1 {
     width: 360px;
     top: calc(100% + 15px);
     right: -30px;
-  }
-
-  main {
-    width: calc(100% - 48px);
-    max-width: 608px;
   }
 
   .main-image img {
