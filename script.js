@@ -11,7 +11,12 @@ let lastFocusedElement = null;
 const focusableMenuElements = document.querySelectorAll(
   ".header__close-btn,.header__nav ul li a",
 );
+const decrementBtn = document.getElementById("decrease-btn");
+const incrementBtn = document.getElementById("increase-btn");
+const productQuantityInput = document.querySelector('input[type="number"]');
+
 let currentIndex = 0;
+let selectedQuantity = 0;
 
 const images = [
   "images/image-product-1.jpg",
@@ -21,7 +26,8 @@ const images = [
 ];
 
 function trapMenuFocus(e) {
-  if (e.key !== "Tab") return;
+  if (e.key !== "Tab" || !body.classList.contains("menu-is-open")) return;
+
   if (focusableMenuElements.length > 0) {
     const firstFocusableEl = focusableMenuElements[0];
     const lastFocusableEl =
@@ -51,6 +57,14 @@ function openMenuButton(e) {
   openMenuBtn.setAttribute("aria-expanded", "true");
 }
 
+function updateQuantity(newValue) {
+  if (newValue < 0) {
+    newValue = 0;
+  }
+  selectedQuantity = newValue;
+  productQuantityInput.value = selectedQuantity;
+}
+
 openMenuBtn.addEventListener("click", openMenuButton);
 
 closeMenuBtn.addEventListener("click", closeMenuButton);
@@ -70,8 +84,20 @@ prevImgBtn.addEventListener("click", () => {
   mainImg.src = images[currentIndex];
 });
 
+productQuantityInput.addEventListener("input", (e) => {
+  updateQuantity(Number(e.target.value));
+});
+
 nextImgBtn.addEventListener("click", () => {
   currentIndex++;
   if (currentIndex > 3) currentIndex = 0;
   mainImg.src = images[currentIndex];
+});
+
+decrementBtn.addEventListener("click", () => {
+  updateQuantity(selectedQuantity - 1);
+});
+
+incrementBtn.addEventListener("click", () => {
+  updateQuantity(selectedQuantity + 1);
 });
