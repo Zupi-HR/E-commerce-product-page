@@ -8,9 +8,7 @@ const mainImg = document.querySelector(".main-image img");
 const prevImgBtn = document.querySelector(".main-image__btn--prev");
 const nextImgBtn = document.querySelector(".main-image__btn--next");
 let lastFocusedElement = null;
-const focusableMenuElements = document.querySelectorAll(
-  ".header__close-btn,.header__nav ul li a",
-);
+
 const decrementBtn = document.getElementById("decrease-btn");
 const incrementBtn = document.getElementById("increase-btn");
 const productQuantityInput = document.querySelector('input[type="number"]');
@@ -24,23 +22,6 @@ const images = [
   "images/image-product-3.jpg",
   "images/image-product-4.jpg",
 ];
-
-function trapMenuFocus(e) {
-  if (e.key !== "Tab" || !body.classList.contains("menu-is-open")) return;
-
-  if (focusableMenuElements.length > 0) {
-    const firstFocusableEl = focusableMenuElements[0];
-    const lastFocusableEl =
-      focusableMenuElements[focusableMenuElements.length - 1];
-    if (e.shiftKey && document.activeElement === firstFocusableEl) {
-      e.preventDefault();
-      lastFocusableEl.focus();
-    } else if (!e.shiftKey && document.activeElement === lastFocusableEl) {
-      e.preventDefault();
-      firstFocusableEl.focus();
-    }
-  }
-}
 
 headerNav.addEventListener("keydown", trapMenuFocus);
 
