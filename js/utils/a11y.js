@@ -1,4 +1,4 @@
-export function trapFocus(e, containerElement) {
+function trapFocus(e, containerElement) {
   if (e.key !== "Tab" || !containerElement) return;
 
   const focusableElements = containerElement.querySelectorAll(
@@ -16,3 +16,10 @@ export function trapFocus(e, containerElement) {
     }
   }
 }
+
+function restoreFocus(element) {
+  if (!element) return;
+  element.focus();
+}
+
+export { trapFocus, restoreFocus };

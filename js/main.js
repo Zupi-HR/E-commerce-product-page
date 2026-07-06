@@ -1,13 +1,10 @@
+import { initMenu } from "./modules/menu.js";
+
 const cartBtn = document.querySelector(".header__cart-btn");
-const body = document.querySelector("body");
-const headerNav = document.querySelector(".header__nav");
-const openMenuBtn = document.querySelector(".header__menu-btn");
-const closeMenuBtn = document.getElementById("close-menu-btn");
-const overlay = document.getElementById("menu-overlay");
+
 const mainImg = document.querySelector(".main-image img");
 const prevImgBtn = document.querySelector(".main-image__btn--prev");
 const nextImgBtn = document.querySelector(".main-image__btn--next");
-let lastFocusedElement = null;
 
 const decrementBtn = document.getElementById("decrease-btn");
 const incrementBtn = document.getElementById("increase-btn");
@@ -23,21 +20,6 @@ const images = [
   "images/image-product-4.jpg",
 ];
 
-headerNav.addEventListener("keydown", trapMenuFocus);
-
-function closeMenuButton() {
-  body.classList.remove("menu-is-open");
-  openMenuBtn.setAttribute("aria-expanded", "false");
-  lastFocusedElement.focus();
-}
-
-function openMenuButton(e) {
-  lastFocusedElement = document.activeElement;
-  closeMenuBtn.focus();
-  body.classList.add("menu-is-open");
-  openMenuBtn.setAttribute("aria-expanded", "true");
-}
-
 function updateQuantity(newValue) {
   if (newValue < 0) {
     newValue = 0;
@@ -45,12 +27,6 @@ function updateQuantity(newValue) {
   selectedQuantity = newValue;
   productQuantityInput.value = selectedQuantity;
 }
-
-openMenuBtn.addEventListener("click", openMenuButton);
-
-closeMenuBtn.addEventListener("click", closeMenuButton);
-
-overlay.addEventListener("click", closeMenuButton);
 
 cartBtn.addEventListener("click", () => {
   const isExpanded = cartBtn.getAttribute("aria-expanded");
@@ -82,3 +58,5 @@ decrementBtn.addEventListener("click", () => {
 incrementBtn.addEventListener("click", () => {
   updateQuantity(selectedQuantity + 1);
 });
+
+initMenu();
