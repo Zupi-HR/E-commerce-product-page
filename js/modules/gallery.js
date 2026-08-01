@@ -2,6 +2,7 @@ const mainImg = document.querySelector(".main-image img");
 const prevImgBtn = document.querySelector(".main-image__btn--prev");
 const nextImgBtn = document.querySelector(".main-image__btn--next");
 const thumbnailsContainer = document.querySelector(".images");
+const thumbnails = thumbnailsContainer.querySelectorAll("button");
 let currentIndex = 0;
 
 export function initGallery() {
@@ -20,11 +21,8 @@ export function initGallery() {
   function updateActiveThumbnail(event) {
     const clickedThumbnail = event.target.closest("button");
     if (!clickedThumbnail) return;
-    let newIndex = Array.from(
-      thumbnailsContainer.querySelectorAll("button"),
-    ).indexOf(clickedThumbnail);
-    currentIndex = newIndex;
-    updateGalleryView(currentIndex);
+    const newIndex = Array.from(thumbnails).indexOf(clickedThumbnail);
+    updateGalleryView(newIndex);
   }
 
   function updateMainImage(imgSrc) {
@@ -32,17 +30,15 @@ export function initGallery() {
   }
 
   function updateGalleryView(index) {
-    if (index < 0) index = 3;
+    if (index < 0) index = thumbnails.length - 1;
 
-    if (index > 3) index = 0;
+    if (index >= thumbnails.length) index = 0;
 
     thumbnailsContainer
       .querySelector("[aria-current]")
       ?.removeAttribute("aria-current");
 
-    const activeThumbnail = Array.from(
-      thumbnailsContainer.querySelectorAll("button"),
-    ).at(index);
+    const activeThumbnail = Array.from(thumbnails).at(index);
 
     activeThumbnail.setAttribute("aria-current", "true");
     updateMainImage(activeThumbnail.dataset.image);

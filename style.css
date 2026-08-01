@@ -43,18 +43,30 @@
 
   /* Spacing */
   --spacing-0: 0;
-  --spacing-100: 0.5rem; /* 8px */
-  --spacing-200: 1rem; /* 16px */
-  --spacing-300: 1.5rem; /* 24px */
-  --spacing-400: 2rem; /* 32px */
-  --spacing-500: 2.5rem; /* 40px */
-  --spacing-600: 3rem; /* 48px */
-  --spacing-700: 3.5rem; /* 56px */
-  --spacing-900: 4.5rem; /* 72px */
-  --spacing-1000: 5rem; /* 80px */
-  --spacing-1200: 6rem; /* 96px */
-  --spacing-1300: 6.5rem; /* 104px */
-  --spacing-1600: 8rem; /* 128px */
+  --spacing-100: 0.5rem;
+  /* 8px */
+  --spacing-200: 1rem;
+  /* 16px */
+  --spacing-300: 1.5rem;
+  /* 24px */
+  --spacing-400: 2rem;
+  /* 32px */
+  --spacing-500: 2.5rem;
+  /* 40px */
+  --spacing-600: 3rem;
+  /* 48px */
+  --spacing-700: 3.5rem;
+  /* 56px */
+  --spacing-900: 4.5rem;
+  /* 72px */
+  --spacing-1000: 5rem;
+  /* 80px */
+  --spacing-1200: 6rem;
+  /* 96px */
+  --spacing-1300: 6.5rem;
+  /* 104px */
+  --spacing-1600: 8rem;
+  /* 128px */
 
   /* =========================================
      2. SEMANTIC TOKENS (Aliases)
@@ -313,7 +325,7 @@ body.menu-is-open .header__nav {
   font-weight: var(--font-weight-bold);
 }
 
-.header__cart-btn[aria-expanded="false"] ~ .cart-dropdown {
+.header__cart-btn[aria-expanded="false"]~.cart-dropdown {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -382,6 +394,14 @@ main {
   display: none;
 }
 
+.images button {
+  border: 3px solid transparent;
+}
+
+.images button[aria-current="true"] {
+  border-color: var(--color-primary);
+}
+
 .main-image {
   position: relative;
 }
@@ -427,7 +447,7 @@ main {
   padding-bottom: var(--spacing-600);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-200);  
+  gap: var(--spacing-200);
 }
 
 hgroup {
@@ -471,7 +491,7 @@ hgroup h1 {
   font-weight: var(--font-weight-bold);
 }
 
-.pricing-wrapper__current > span {
+.pricing-wrapper__current>span {
   background-color: var(--text-primary);
   color: var(--bg-main);
   padding-inline: var(--spacing-200);
@@ -517,7 +537,7 @@ hgroup h1 {
   color: var(--color-primary);
 }
 
-@media (width >= 700px) {
+@media (width >=700px) {
   .container {
     max-width: 608px;
   }
@@ -574,10 +594,10 @@ hgroup h1 {
   }
 }
 
-@media (width >= 1024px) {
-.container {
-  max-width: 1110px;
-}
+@media (width >=1024px) {
+  .container {
+    max-width: 1110px;
+  }
 
   .header__menu-btn {
     display: none;
@@ -642,7 +662,8 @@ hgroup h1 {
     gap: var(--spacing-400);
   }
 
-  .main-image__btn--prev, .main-image__btn--next {
+  .main-image__btn--prev,
+  .main-image__btn--next {
     display: none;
   }
 
