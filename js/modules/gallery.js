@@ -6,6 +6,8 @@ const thumbnails = thumbnailsContainer.querySelectorAll("button");
 let currentIndex = 0;
 
 export function initGallery() {
+  updateGalleryView(currentIndex);
+
   prevImgBtn.addEventListener("click", () => {
     currentIndex--;
     updateGalleryView(currentIndex);
