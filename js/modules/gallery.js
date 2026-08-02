@@ -1,11 +1,13 @@
-const mainImg = document.querySelector(".main-image img");
 const prevImgBtn = document.querySelector(".main-image__btn--prev");
 const nextImgBtn = document.querySelector(".main-image__btn--next");
-const thumbnailsContainer = document.querySelector(".images");
-const thumbnails = thumbnailsContainer.querySelectorAll("button");
+
 let currentIndex = 0;
 
-export function initGallery() {
+export function initGallery(root) {
+  const mainImg = root.querySelector(".main-image img");
+  const thumbnailsContainer = root.querySelector(".images");
+  const thumbnails = thumbnailsContainer.querySelectorAll("button");
+
   prevImgBtn.addEventListener("click", () => {
     currentIndex--;
     updateGalleryView(currentIndex);

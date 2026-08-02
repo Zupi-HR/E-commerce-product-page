@@ -2,7 +2,7 @@ import { initMenu } from "./modules/menu.js";
 import { initGallery } from "./modules/gallery.js";
 
 const cartBtn = document.querySelector(".header__cart-btn");
-
+const imageGallery = document.querySelector(".image-gallery");
 const decrementBtn = document.getElementById("decrease-btn");
 const incrementBtn = document.getElementById("increase-btn");
 const productQuantityInput = document.querySelector('input[type="number"]');
@@ -37,4 +37,4 @@ incrementBtn.addEventListener("click", () => {
 });
 
 initMenu();
-initGallery();
+initGallery(imageGallery);
