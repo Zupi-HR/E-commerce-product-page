@@ -1,11 +1,16 @@
-const prevImgBtn = document.querySelector(".main-image__btn--prev");
-const nextImgBtn = document.querySelector(".main-image__btn--next");
-
 let currentIndex = 0;
 
-export function initGallery() {
+export function initGallery(root) {
+  const mainImg = root.querySelector(".main-image img");
+  const prevImgBtn = root.querySelector(".main-image__btn--prev");
+  const nextImgBtn = root.querySelector(".main-image__btn--next");
+  const thumbnailsContainer = root.querySelector(".images");
+  const thumbnails = thumbnailsContainer.querySelectorAll("button");
+  updateGalleryView(currentIndex);
+
   prevImgBtn.addEventListener("click", () => {
     currentIndex--;
+    updateGalleryView(currentIndex);
   });
 
   nextImgBtn.addEventListener("click", () => {
