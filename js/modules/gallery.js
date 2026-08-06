@@ -1,37 +1,81 @@
-let currentIndex = 0;
+const state = {
+  thumbnailCount: null,
+  currentIndex: 0,
+};
 
-export function initGallery(root) {
-  function setCurrentIndex(newIndex) {
-    if (newIndex < 0) newIndex = thumbnails.length - 1;
-
-    if (newIndex >= thumbnails.length) newIndex = 0;
-    currentIndex = newIndex;
-    updateGalleryView(currentIndex);
+function setThumbnailCount(count) {
+  if (!Number.isInteger(count)) {
+    throw new TypeError("Thumbnail count must be an integer.");
   }
 
+  if (count <= 0) {
+    throw new RangeError("Thumbnail count must be greater than zero.");
+  }
+
+  const expectedCount = state.thumbnailCount;
+
+  if (expectedCount === null) {
+    state.thumbnailCount = count;
+    return;
+  }
+
+  if (count !== expectedCount) {
+    throw new Error(
+      `Thumbnail count does not match. Expected: ${expectedCount}, received: ${count}.`,
+    );
+  }
+}
+
+export function setCurrentIndex(indexOrDirection) {
+  if (state.thumbnailCount === null) {
+    throw new Error(
+      "Cannot set the current index before the gallery is initialized.",
+    );
+  }
+
+  if (indexOrDirection === "previous") {
+    state.currentIndex -= 1;
+  } else if (indexOrDirection === "next") {
+    state.currentIndex += 1;
+  } else if (Number.isInteger(indexOrDirection)) {
+    state.currentIndex = indexOrDirection;
+  } else {
+    throw new TypeError("Value must be an integer, 'previous', or 'next'.");
+  }
+
+  if (state.currentIndex < 0) {
+    state.currentIndex = state.thumbnailCount - 1;
+  } else if (state.currentIndex >= state.thumbnailCount) {
+    state.currentIndex = 0;
+  }
+
+  return state.currentIndex;
+}
+
+export function initGallery(root, onImageChangeRequest) {
   const mainImg = root.querySelector(".main-image img");
   const prevImgBtn = root.querySelector(".main-image__btn--prev");
   const nextImgBtn = root.querySelector(".main-image__btn--next");
   const thumbnailsContainer = root.querySelector(".images");
   const thumbnails = thumbnailsContainer.querySelectorAll("button");
-
-  setCurrentIndex(currentIndex);
+  setThumbnailCount(thumbnails.length);
+  updateGalleryView(state.currentIndex);
 
   prevImgBtn.addEventListener("click", () => {
-    setCurrentIndex(currentIndex - 1);
+    onImageChangeRequest("previous");
   });
 
   nextImgBtn.addEventListener("click", () => {
-    setCurrentIndex(currentIndex + 1);
+    onImageChangeRequest("next");
   });
 
-  thumbnailsContainer.addEventListener("click", updateActiveThumbnail);
+  thumbnailsContainer.addEventListener("click", handleThumbnailClick);
 
-  function updateActiveThumbnail(event) {
+  function handleThumbnailClick(event) {
     const clickedThumbnail = event.target.closest("button");
     if (!clickedThumbnail) return;
-    const newIndex = Array.from(thumbnails).indexOf(clickedThumbnail);
-    setCurrentIndex(newIndex);
+    const requestedIndex = Array.from(thumbnails).indexOf(clickedThumbnail);
+    onImageChangeRequest(requestedIndex);
   }
 
   function updateMainImage(imgSrc) {
@@ -48,4 +92,5 @@ export function initGallery(root) {
     activeThumbnail.setAttribute("aria-current", "true");
     updateMainImage(activeThumbnail.dataset.image);
   }
+  return updateGalleryView;
 }

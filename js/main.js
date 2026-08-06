@@ -1,8 +1,9 @@
 import { initMenu } from "./modules/menu.js";
-import { initGallery } from "./modules/gallery.js";
+import { initGallery, setCurrentIndex } from "./modules/gallery.js";
 
 const cartBtn = document.querySelector(".header__cart-btn");
 const imageGallery = document.querySelector(".image-gallery");
+const lightboxGallery = document.querySelector(".lightbox-modal");
 const decrementBtn = document.getElementById("decrease-btn");
 const incrementBtn = document.getElementById("increase-btn");
 const productQuantityInput = document.querySelector('input[type="number"]');
@@ -36,5 +37,15 @@ incrementBtn.addEventListener("click", () => {
   updateQuantity(selectedQuantity + 1);
 });
 
+function handleImageChangeRequest(selectionIntent) {
+  const newIndex = setCurrentIndex(selectionIntent);
+  renderMainGallery(newIndex);
+  renderLightboxGallery(newIndex);
+}
+
 initMenu();
-initGallery(imageGallery);
+const renderMainGallery = initGallery(imageGallery, handleImageChangeRequest);
+const renderLightboxGallery = initGallery(
+  lightboxGallery,
+  handleImageChangeRequest,
+);
