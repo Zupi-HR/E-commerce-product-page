@@ -43,8 +43,16 @@ function handleImageChangeRequest(selectionIntent) {
   renderLightboxGallery(newIndex);
 }
 
+function handleLightboxOpen() {
+  lightboxGallery.showModal();
+}
+
 initMenu();
-const renderMainGallery = initGallery(imageGallery, handleImageChangeRequest);
+const renderMainGallery = initGallery(
+  imageGallery,
+  handleImageChangeRequest,
+  handleLightboxOpen,
+);
 const renderLightboxGallery = initGallery(
   lightboxGallery,
   handleImageChangeRequest,

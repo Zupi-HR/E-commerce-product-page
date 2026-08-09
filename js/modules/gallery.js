@@ -52,8 +52,12 @@ export function setCurrentIndex(indexOrDirection) {
   return state.currentIndex;
 }
 
-export function initGallery(root, onImageChangeRequest) {
+export function initGallery(root, onImageChangeRequest, onLightboxOpen) {
   const mainImg = root.querySelector(".main-image img");
+  if (onLightboxOpen !== undefined) {
+    const lightboxTrigger = root.querySelector(".main-image__display-btn");
+    lightboxTrigger.addEventListener("click", onLightboxOpen);
+  }
   const prevImgBtn = root.querySelector(".main-image__btn--prev");
   const nextImgBtn = root.querySelector(".main-image__btn--next");
   const thumbnailsContainer = root.querySelector(".images");
