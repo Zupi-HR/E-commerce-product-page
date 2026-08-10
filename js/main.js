@@ -1,5 +1,6 @@
 import { initMenu } from "./modules/menu.js";
 import { initGallery, setCurrentIndex } from "./modules/gallery.js";
+import { updateQuantity, getSelectedQuantity } from "./store.js";
 
 const cartBtn = document.querySelector(".header__cart-btn");
 const imageGallery = document.querySelector(".image-gallery");
@@ -7,16 +8,6 @@ const lightboxGallery = document.querySelector(".lightbox-modal");
 const decrementBtn = document.getElementById("decrease-btn");
 const incrementBtn = document.getElementById("increase-btn");
 const productQuantityInput = document.querySelector('input[type="number"]');
-
-let selectedQuantity = 0;
-
-function updateQuantity(newValue) {
-  if (newValue < 0) {
-    newValue = 0;
-  }
-  selectedQuantity = newValue;
-  productQuantityInput.value = selectedQuantity;
-}
 
 cartBtn.addEventListener("click", () => {
   const isExpanded = cartBtn.getAttribute("aria-expanded");
