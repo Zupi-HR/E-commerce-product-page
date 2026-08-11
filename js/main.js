@@ -16,22 +16,31 @@ cartBtn.addEventListener("click", () => {
   else cartBtn.setAttribute("aria-expanded", "false");
 });
 
+window.addEventListener("quantity:updated", (e) => {
+  productQuantityInput.value = e.detail;
+});
+
 productQuantityInput.addEventListener("input", (e) => {
   updateQuantity(Number(e.target.value));
 });
 
 decrementBtn.addEventListener("click", () => {
-  updateQuantity(selectedQuantity - 1);
+  adjustQuantity(-1);
 });
 
 incrementBtn.addEventListener("click", () => {
-  updateQuantity(selectedQuantity + 1);
+  adjustQuantity(1);
 });
 
 function handleImageChangeRequest(selectionIntent) {
   const newIndex = setCurrentIndex(selectionIntent);
   renderMainGallery(newIndex);
   renderLightboxGallery(newIndex);
+}
+
+function adjustQuantity(delta) {
+  const requestedQuantity = getSelectedQuantity() + delta;
+  updateQuantity(requestedQuantity);
 }
 
 function handleLightboxOpen() {
