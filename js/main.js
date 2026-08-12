@@ -21,7 +21,16 @@ window.addEventListener("quantity:updated", (e) => {
 });
 
 productQuantityInput.addEventListener("input", (e) => {
+  if (e.target.value === "") {
+    return;
+  }
   updateQuantity(Number(e.target.value));
+});
+
+productQuantityInput.addEventListener("blur", (e) => {
+  if (e.target.value === "") {
+    updateQuantity(getSelectedQuantity());
+  }
 });
 
 decrementBtn.addEventListener("click", () => {
