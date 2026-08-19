@@ -18,6 +18,8 @@ export function getSelectedQuantity() {
 }
 
 export function addToCart(item) {
+  if (!Number.isInteger(item.quantity) || item.quantity <= 0) return;
+
   const existingItem = cartItems.find((element) => {
     return item.id === element.id;
   });
@@ -27,4 +29,7 @@ export function addToCart(item) {
   } else {
     cartItems.push(item);
   }
+
+  const cartUpdated = new CustomEvent("cart:updated", { detail: cartItems });
+  window.dispatchEvent(cartUpdated);
 }
