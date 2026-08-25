@@ -49,6 +49,11 @@ incrementBtn.addEventListener("click", () => {
   adjustQuantity(1);
 });
 
+addToCartForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  updateQuantity;
+});
+
 function handleImageChangeRequest(selectionIntent) {
   const newIndex = setCurrentIndex(selectionIntent);
   renderMainGallery(newIndex);
