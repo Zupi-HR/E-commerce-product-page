@@ -1,16 +1,21 @@
 let selectedQuantity = 0;
-const cartItems = [];
+let cartItems = [];
 
 export function updateQuantity(newValue) {
-  if (Number.isInteger(newValue)) {
-    selectedQuantity = Math.max(0, newValue);
+  if (!Number.isInteger(newValue) || newValue < 0) {
+    return false;
+  }
+  if (newValue === selectedQuantity) {
+    return true;
   }
 
+  selectedQuantity = newValue;
   const quantityUpdated = new CustomEvent("quantity:updated", {
     detail: selectedQuantity,
   });
 
   window.dispatchEvent(quantityUpdated);
+  return true;
 }
 
 export function getSelectedQuantity() {
@@ -27,9 +32,25 @@ export function addToCart(item) {
   if (existingItem !== undefined) {
     existingItem.quantity += item.quantity;
   } else {
-    cartItems.push(item);
+    cartItems.push(structuredClone(item));
   }
 
-  const cartUpdated = new CustomEvent("cart:updated", { detail: cartItems });
+  const cartUpdated = new CustomEvent("cart:updated", {
+    detail: structuredClone(cartItems),
+  });
+  window.dispatchEvent(cartUpdated);
+}
+
+export function getCart() {
+  return structuredClone(cartItems);
+}
+
+export function removeFromCart(id) {
+  const previousLength = cartItems.length;
+  cartItems = cartItems.filter((item) => item.id !== id);
+  if (previousLength === cartItems.length) return;
+  const cartUpdated = new CustomEvent("cart:updated", {
+    detail: structuredClone(cartItems),
+  });
   window.dispatchEvent(cartUpdated);
 }

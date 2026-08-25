@@ -28,8 +28,15 @@ productQuantityInput.addEventListener("input", (e) => {
 });
 
 productQuantityInput.addEventListener("blur", (e) => {
-  if (e.target.value === "") {
-    updateQuantity(getSelectedQuantity());
+  const rawValue = e.target.value;
+  if (rawValue === "") {
+    e.target.value = getSelectedQuantity();
+    return;
+  }
+  const value = Number(rawValue);
+
+  if (!Number.isInteger(value) || value < 0) {
+    e.target.value = getSelectedQuantity();
   }
 });
 
