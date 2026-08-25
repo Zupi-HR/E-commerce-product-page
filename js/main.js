@@ -8,6 +8,7 @@ const lightboxGallery = document.querySelector(".lightbox-modal");
 const decrementBtn = document.getElementById("decrease-btn");
 const incrementBtn = document.getElementById("increase-btn");
 const productQuantityInput = document.querySelector('input[type="number"]');
+const addToCartForm = document.querySelector(".add-to-cart-form");
 
 cartBtn.addEventListener("click", () => {
   const isExpanded = cartBtn.getAttribute("aria-expanded");

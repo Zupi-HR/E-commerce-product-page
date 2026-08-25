@@ -23,7 +23,7 @@ export function getSelectedQuantity() {
 }
 
 export function addToCart(item) {
-  if (!Number.isInteger(item.quantity) || item.quantity <= 0) return;
+  if (!Number.isInteger(item.quantity) || item.quantity <= 0) return false;
 
   const existingItem = cartItems.find((element) => {
     return item.id === element.id;
@@ -39,6 +39,7 @@ export function addToCart(item) {
     detail: structuredClone(cartItems),
   });
   window.dispatchEvent(cartUpdated);
+  return true;
 }
 
 export function getCart() {
