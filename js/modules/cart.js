@@ -1,4 +1,5 @@
 import { updateQuantity, getSelectedQuantity } from "../store.js";
+import { product } from "../data/product.js";
 
 export function initCart() {
   const cartBtn = document.querySelector(".header__cart-btn");
@@ -53,5 +54,10 @@ export function initCart() {
 
   addToCartForm.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    const cartItem = {
+      ...product,
+      quantity: Number(productQuantityInput.value),
+    };
   });
 }
