@@ -1,4 +1,4 @@
-import { updateQuantity, getSelectedQuantity } from "../store.js";
+import { updateQuantity, getSelectedQuantity, addToCart } from "../store.js";
 import { product } from "../data/product.js";
 
 export function initCart() {
@@ -17,6 +17,10 @@ export function initCart() {
 
   window.addEventListener("quantity:updated", (e) => {
     productQuantityInput.value = e.detail;
+  });
+
+  window.addEventListener("cart:updated", (e) => {
+    const cartItems = e.detail;
   });
 
   productQuantityInput.addEventListener("input", (e) => {
@@ -55,9 +59,9 @@ export function initCart() {
   addToCartForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const cartItem = {
-      ...product,
-      quantity: Number(productQuantityInput.value),
-    };
+    const { images, ...cartItem } = product;
+    cartItem.quantity = Number(productQuantityInput.value);
+    cartItem.thumbnail = images[0].thumbnail;
+    addToCart(cartItem);
   });
 }
