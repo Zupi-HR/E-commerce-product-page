@@ -7,6 +7,7 @@ export function initCart() {
   const incrementBtn = document.getElementById("increase-btn");
   const productQuantityInput = document.querySelector('input[type="number"]');
   const addToCartForm = document.querySelector(".add-to-cart-form");
+  const cartQuantity = document.querySelector(".cart-quantity");
 
   cartBtn.addEventListener("click", () => {
     const isExpanded = cartBtn.getAttribute("aria-expanded");
@@ -21,6 +22,7 @@ export function initCart() {
 
   window.addEventListener("cart:updated", (e) => {
     const cartItems = e.detail;
+    cartQuantity.textContent = cartItems[0].quantity;
   });
 
   productQuantityInput.addEventListener("input", (e) => {
@@ -60,7 +62,7 @@ export function initCart() {
     e.preventDefault();
 
     const { images, ...cartItem } = product;
-    cartItem.quantity = Number(productQuantityInput.value);
+    cartItem.quantity = getSelectedQuantity();
     cartItem.thumbnail = images[0].thumbnail;
     addToCart(cartItem);
   });
