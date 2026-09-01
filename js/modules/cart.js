@@ -97,7 +97,7 @@ export function initCart() {
     cartItemsList.replaceChildren();
     cartItems.forEach((item) => {
       const listItem = templateListEl.content.cloneNode(true);
-      listItem.querySelector(".cart-item-img").src = item.images[0].thumbnail;
+      listItem.querySelector(".cart-item-img").src = item.thumbnail;
       listItem.querySelector(".cart-item-title").textContent = item.title;
       listItem.querySelector(".price-value").textContent = item.unitPrice;
       listItem.querySelector(".quantity-value").textContent = item.quantity;
