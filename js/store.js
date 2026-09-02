@@ -42,6 +42,10 @@ export function addToCart(item) {
   return true;
 }
 
+export function getTotalQuantity() {
+  return cartItems.reduce((total, item) => total + item.quantity, 0);
+}
+
 export function getCart() {
   return structuredClone(cartItems);
 }

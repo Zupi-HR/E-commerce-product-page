@@ -3,6 +3,7 @@ import {
   getSelectedQuantity,
   addToCart,
   getCart,
+  getTotalQuantity,
 } from "../store.js";
 import { product } from "../data/product.js";
 
@@ -88,7 +89,7 @@ export function initCart() {
       emptyCart.style.display = "none";
       cartQuantity.style.display = "flex";
       cartItemsList.style.display = "block";
-      cartQuantity.textContent = cartItems[0].quantity;
+      cartQuantity.textContent = getTotalQuantity();
       checkoutBtn.style.display = "block";
     }
   }
@@ -99,10 +100,12 @@ export function initCart() {
       const listItem = templateListEl.content.cloneNode(true);
       listItem.querySelector(".cart-item-img").src = item.thumbnail;
       listItem.querySelector(".cart-item-title").textContent = item.title;
-      listItem.querySelector(".price-value").textContent = item.unitPrice;
-      listItem.querySelector(".quantity-value").textContent = item.quantity;
+      listItem.querySelector(".price-value").textContent =
+        `$${item.unitPrice.toFixed(2)}`;
+      listItem.querySelector(".quantity-value").textContent =
+        `x ${item.quantity}`;
       listItem.querySelector(".total-value").textContent =
-        `${item.unitPrice * item.quantity}`;
+        `$${(item.unitPrice * item.quantity).toFixed(2)}`;
       cartItemsList.appendChild(listItem);
     });
   }
