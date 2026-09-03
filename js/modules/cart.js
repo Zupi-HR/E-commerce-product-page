@@ -4,6 +4,7 @@ import {
   addToCart,
   getCart,
   getTotalQuantity,
+  removeFromCart,
 } from "../store.js";
 import { product } from "../data/product.js";
 
@@ -70,7 +71,14 @@ export function initCart() {
     const { images, ...cartItem } = product;
     cartItem.quantity = getSelectedQuantity();
     cartItem.thumbnail = images[0].thumbnail;
-    addToCart(cartItem);
+    const wasItemAddedToCart = addToCart(cartItem);
+    if (wasItemAddedToCart) updateQuantity(0);
+  });
+
+  cartItemsList.addEventListener("click", (e) => {
+    const deleteBtn = e.target.closest(".delete-btn");
+    if (deleteBtn === null) return;
+    removeFromCart(Number(deleteBtn.dataset.id));
   });
 
   function adjustQuantity(delta) {
@@ -79,6 +87,7 @@ export function initCart() {
   }
 
   function renderCartState(cartItems) {
+    cartItemsList.replaceChildren();
     if (cartItems.length === 0) {
       emptyCart.style.display = "flex";
       cartQuantity.style.display = "none";
@@ -95,7 +104,6 @@ export function initCart() {
   }
 
   function renderCartItems(cartItems) {
-    cartItemsList.replaceChildren();
     cartItems.forEach((item) => {
       const listItem = templateListEl.content.cloneNode(true);
       listItem.querySelector(".cart-item-img").src = item.thumbnail;
@@ -106,6 +114,7 @@ export function initCart() {
         `x ${item.quantity}`;
       listItem.querySelector(".total-value").textContent =
         `$${(item.unitPrice * item.quantity).toFixed(2)}`;
+      listItem.querySelector(".delete-btn").dataset.id = item.id;
       cartItemsList.appendChild(listItem);
     });
   }
