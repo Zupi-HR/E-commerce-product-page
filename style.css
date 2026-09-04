@@ -386,6 +386,27 @@ body.menu-is-open .header__nav {
   margin: 0 auto;
 }
 
+.lightbox-modal {
+  width: 550px;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.lightbox-modal form {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lightbox-modal form button {
+  color: var(--color-white);
+}
+
+
+.lightbox-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
 main {
   display: grid;
 }
@@ -574,6 +595,7 @@ hgroup h1 {
     margin-block: var(--spacing-600);
   }
 
+
   .pricing-wrapper {
     flex-direction: column;
     align-items: flex-start;
@@ -662,8 +684,8 @@ hgroup h1 {
     gap: var(--spacing-400);
   }
 
-  .main-image__btn--prev,
-  .main-image__btn--next {
+  .image-gallery .main-image__btn--prev,
+  .image-gallery .main-image__btn--next {
     display: none;
   }
 
