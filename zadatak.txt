@@ -1,0 +1,153 @@
+**Projekt već ima funkcionalnu jezgru challengea.** Najviše preostalog posla odnosi se na responsive raspored, usklađivanje s dizajnom, accessibility i nekoliko konkretnih bugova u interakcijama.
+
+Pregledao sam sav aplikacijski kod, dokumentaciju, 19 asseta i svih 10 referentnih dizajna. Pokrenuo sam projekt preko lokalnog HTTP servera i provjerio interakcije u Chromeu te širine od 320 do 1920 px. Nisam mijenjao datoteke.
+
+JavaScript syntax provjere i ciljane provjere `store.js` prolaze. Svi lokalni resursi referencirani iz HTML-a postoje. Accessibility provjera obuhvatila je keyboard ponašanje, HTML/ARIA i accessibility tree; puni test stvarnim screen readerom, Safari/Firefox i fizički mobilni uređaji ostaju za završnu provjeru.
+
+1. **Što je već napravljeno**
+
+   Repozitorij je statična HTML/CSS/vanilla JavaScript aplikacija s ES modules:
+
+   ```text
+   index.html
+   style.css
+   reset.css
+   js/
+     main.js
+     store.js
+     data/product.js
+     modules/cart.js
+     modules/gallery.js
+     modules/menu.js
+     utils/a11y.js
+   images/             19 asseta
+   design/             10 referentnih prikaza
+   README.md
+   style-guide.md
+   ARCHITECTURE.md
+   AGENTS.md
+   CLAUDE.md
+   .gitignore
+   ```
+
+   Nema `package.json`, build konfiguracije, test suitea ni linter konfiguracije. Za ovaj challenge build sustav nije potreban. Postojeća uputa za pokretanje preko HTTP servera nalazi se u [ARCHITECTURE.md](/C:/Users/dubra/Documents/development/E-commerce-product-page/ARCHITECTURE.md:100).
+
+   [README zahtjevi](/C:/Users/dubra/Documents/development/E-commerce-product-page/README.md:13) traže responsive prikaz, hover stanja, lightbox, promjenu slika thumbnailima te dodavanje, pregled i uklanjanje proizvoda iz košarice. [Style guide](/C:/Users/dubra/Documents/development/E-commerce-product-page/style-guide.md:3) navodi reference na 375 i 1440 px te provjeru raspona od 320 px naviše.
+
+   | Područje | Što postoji i radi | Relevantne datoteke |
+   |---|---|---|
+   | Osnovni UI | Header, logo, navigacija, avatar, košarica, galerija, naziv i opis proizvoda, cijene, popust, quantity controller i Add to cart. | [index.html](/C:/Users/dubra/Documents/development/E-commerce-product-page/index.html:24) |
+   | Galerija | Četiri slike, thumbnail odabir, označavanje pomoću `aria-current`, Previous/Next i kruženje između prve i zadnje slike. | [gallery.js](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/gallery.js:29) |
+   | Lightbox | Otvaranje velike slike, promjena slika, sinkronizacija s glavnom galerijom, zatvaranje gumbom i Escapeom. Pri zatvaranju fokus se u provjerenom browseru vraća na glavnu sliku. | [main.js](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/main.js:8), [index.html — dialog](/C:/Users/dubra/Documents/development/E-commerce-product-page/index.html:151) |
+   | Quantity controller | +/−, ručni unos, odbijanje negativnih i necjelobrojnih vrijednosti u storeu te reset na 0 nakon uspješnog dodavanja. | [cart.js](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/cart.js:40), [store.js](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/store.js:4) |
+   | Košarica | Otvaranje/zatvaranje gumbom, empty/filled stanje, thumbnail, naziv, jedinična cijena, količina, ukupan iznos, badge i uklanjanje. | [cart.js](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/cart.js:89) |
+   | Ponovno dodavanje | Isti proizvod dobiva veću količinu umjesto dodatnog retka. Provjereno: 3 komada → `$375.00`; dodavanje još 2 → 5 komada i `$625.00`. | [store.js](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/store.js:25) |
+   | Mobile menu | Otvaranje/zatvaranje, overlay, scroll lock, početni fokus, Tab/Shift+Tab kruženje dok je otvoren i zatvaranje pri prelasku na desktop breakpoint. | [menu.js](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/menu.js:10), [a11y.js](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/utils/a11y.js:1) |
+   | Responsive osnova | Jedan stupac na manjim širinama, promjene na 700 px i desktop navigacija, thumbnaili i dva stupca na 1024 px. | [style.css](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:561) |
+
+   Dobre su i osnovne implementacijske odluke: native gumbi, jedan `h1`, `header/nav/main`, imenovane kontrole, `type="module"`, renderiranje teksta preko `textContent` i kopiranje podataka iz storea pomoću `structuredClone`. To je korisna osnova za dovršetak bez većeg restrukturiranja.
+
+2. **Što još moraš napraviti**
+
+   Preostali posao možeš pratiti ovom checklistom:
+
+   - [ ] **Dovršiti responsive ponašanje:** ukloniti horizontalni overflow i spriječiti stiskanje quantity tipki. Datoteka: `style.css`.
+   - [ ] **Uskladiti mobile i desktop layout s referencama:** dimenzije slika, naslov, razmaci, proporcije forme i pozicija košarice. Datoteka: `style.css`; reference: `design/`.
+   - [ ] **Dovršiti lightbox izgled:** razmaci, veličina i pozicija kontrola, thumbnaili i selected stanje. Datoteka: `style.css`.
+   - [ ] **Dodati nedostajuća hover stanja** i provjeriti vidljivost keyboard fokusa. Datoteka: `style.css`.
+   - [ ] **Dovršiti accessibility menija i košarice:** skriveni sadržaj, obavijesti, accessible names, kontrast i fokus nakon uklanjanja. Datoteke: `index.html`, `menu.js`, `cart.js`, `style.css`.
+   - [ ] **Ispraviti SVG konflikt i rubni slučaj praznog quantity unosa.** Datoteke: `index.html`, `cart.js`.
+   - [ ] **Provesti završne regression i cross-browser provjere.**
+   - [ ] **Napisati projektni README, uskladiti architecture dokument i provjeriti objavljenu verziju prije predaje.** Datoteke: `README.md`, `ARCHITECTURE.md`.
+
+   Opseg challengea pritom ne zahtijeva stvarnu naplatu, backend, login, katalog drugih proizvoda, persistence košarice ili swipe gestu. `Checkout` i avatar postoje bez povezane funkcionalnosti, a navigacija koristi `href="#"` — vidi [index.html](/C:/Users/dubra/Documents/development/E-commerce-product-page/index.html:45). To treba svjesno tretirati kao demo UI, ali nije razlog za implementiranje cijelog webshopa.
+
+   Isto tako, zatvaranje košarice klikom izvan nje, keyboard strelice za galeriju i zatvaranje lightboxa klikom na backdrop korisna su poboljšanja, ali nisu izričiti zahtjevi README-a.
+
+3. **Što trenutno nije dobro ili treba popraviti**
+
+   Najprije bih riješio sljedeće potvrđene probleme.
+
+   | Prioritet | Nalaz i posljedica | Gdje |
+   |---|---|---|
+   | Visok | **Zatvoreni mobile menu ostaje u Tab redoslijedu i accessibility treeju.** Nakon logotipa Tab fokusira nevidljivi Close menu izvan ekrana, zatim skrivene poveznice. `transform: translateX(-100%)` samo ga pomiče. | [style.css:228](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:228), [menu.js:10](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/menu.js:10) |
+   | Visok | **Quantity tipke postaju gotovo neupotrebljive na 320 px.** U provjerenom viewportu obje imaju širinu oko **4,5 px**, dok input zadržava 216 px. Simboli se režu. `flex-shrink: 0` postoji tek od 700 px. | [style.css:534](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:534), [style.css:610](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:610) |
+   | Visok | **Košarica proizvodi horizontalni overflow oko desktop breakpointa.** Na 1024 px dokument je širok 1054 px; na 1110 px širok je 1140 px. Problem postoji i dok je košarica zatvorena. Uzrok je njezin položaj s `right: -30px`. | [style.css:582](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:582) |
+   | Srednji | **Košarica ostaje iznad zatamnjenja otvorenog menija.** Slijed „otvori cart → otvori menu” ostavlja bijeli dio košarice i njezine kontrole iznad overlaya. Overlay ima `z-index: 3`, cart `10`. | [style.css:206](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:206), [style.css:287](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:287), `menu.js` |
+   | Srednji | **Duplicirani SVG `id="a"` mijenja prikaz minus ikone nakon dodavanja proizvoda.** Cart template i minus koriste isti ID. Nakon renderiranja košarice minusov `<use>` referencira oblik trash ikone, koji se zatim reže unutar malog SVG-a. | [index.html:97](/C:/Users/dubra/Documents/development/E-commerce-product-page/index.html:97), [index.html:228](/C:/Users/dubra/Documents/development/E-commerce-product-page/index.html:228) |
+   | Srednji | **Prazan quantity unos može dodati prethodnu količinu.** Reprodukcija: upiši 3 → obriši unos → pritisni Enter. Košarica dobije 3 komada. Prazan input ne mijenja store, a submit čita store bez razrješenja praznog unosa. | [cart.js:40](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/cart.js:40), [cart.js:68](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/cart.js:68) |
+   | Srednji | **Keyboard fokus gubi se nakon uklanjanja proizvoda.** Delete gumb nestane kroz `replaceChildren()`, a fokus završi na `body`. Potrebno je odrediti smislen sljedeći fokus. | [cart.js:78](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/cart.js:78), [cart.js:89](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/cart.js:89) |
+
+   Responsive osnova dakle radi, ali nije završena:
+
+   | Provjereni raspon | Rezultat |
+   |---|---|
+   | 320 px | Bez horizontalnog overflowa u osnovnom prikazu, ali +/− se izrazito stisnu. |
+   | 375 px | Mobile raspored radi; visina headera, crop slike i vertikalni razmaci odstupaju od dizajna. |
+   | 699–1023 px | Prijelaz na tablet stilove radi. Od 700 px sadržaj je ograničen na 608 px i ostaje u jednom stupcu. |
+   | 1024 i 1110 px | Desktop raspored se uključuje, ali cart uzrokuje horizontalni overflow. |
+   | 1440 i 1920 px | Nema zabilježenog horizontalnog overflowa; ostaju vizualna odstupanja. |
+
+   Za vizualnu usporedbu koristio sam [desktop-design.jpg](/C:/Users/dubra/Documents/development/E-commerce-product-page/design/desktop-design.jpg), [mobile-design.jpg](/C:/Users/dubra/Documents/development/E-commerce-product-page/design/mobile-design.jpg) i odgovarajuće cart/lightbox/active-state reference.
+
+   | Dio prikaza | Što treba doraditi | Gdje |
+   |---|---|---|
+   | Desktop naslov | Ostaje **28 px** i stane u jedan red. Referenca ima znatno veći naslov u dva reda. `hgroup h1` prepisuje osnovni veliki naslov i nema desktop override. | [style.css:488](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:488) |
+   | Desktop galerija | Na 1440 px velika slika ima 491 × 491 px, dok je u referenci približno 445 × 445 px. Počinje previsoko i previše lijevo. | [style.css:594](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:594), [style.css:676](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:676) |
+   | Purchase forma | Quantity controller na desktopu zauzima 272 px, a Add to cart 211 px. Proporcije su znatno drukčije od reference s kompaktnijim controllerom i širim CTA-om. | [style.css:528](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:528), [style.css:604](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:604) |
+   | Mobile header i slika | Header je visok 92 px naspram približno 68 px u referenci. Slika ostaje kvadratna umjesto cropa približno 375 × 300 px, pa ostatak sadržaja počinje prenisko. | [style.css:194](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:194), [style.css:426](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:426) |
+   | Cijene i razmaci | `margin-block: 32px` na pricing wrapperu zbraja se s flex gapovima. Razmak prije i poslije cijene prevelik je na mobileu; discount badge također je veći od reference. | [style.css:465](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:465), [style.css:496](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:496) |
+   | Cart panel | Na mobileu počinje 35 px ispod headera, a referenca približno 8 px. Naslov Cart ima samo 8 px bočnog paddinga, dok sadržaj ima 24 px. | [style.css:287](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:287), [style.css:334](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:334) |
+   | Lightbox | Close je priljubljen uz sliku; thumbnaili su odmah ispod nje i preveliki. Strelice su 40 px i unutar slike, dok ih referenca prikazuje većima, na rubovima slike. | [style.css:389](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:389), [style.css:430](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:430), [style.css:696](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:696) |
+   | Selected thumbnail | Postoji narančasti border, ali nedostaje trajno posvjetljenje odabranog thumbnaila. Trenutačni opacity efekt vrijedi samo tijekom hovera. | [style.css:422](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:422), [style.css:706](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:706) |
+
+   **Hover stanja nisu dovršena.** Nema posebnog hover stila za `.btn-primary`, `.quantity-btn`, `.delete-btn`, menu/close gumbe ni lightbox close. Desktop navigacija mijenja boju, ali nema narančastu donju crtu iz reference. Postojeća pravila možeš vidjeti u [style.css:443](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:443) i [desktop dijelu stylesheet-a](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:649).
+
+   Accessibility zahtijeva još ove dorade:
+
+   - **Poveznica logotipa nema accessible name.** Sadrži samo SVG bez tekstualnog naziva. [index.html:32](/C:/Users/dubra/Documents/development/E-commerce-product-page/index.html:32).
+   - **Live region i screen reader broj košarice nisu povezani s logikom.** `#live-region` i `#cart-screen-reader-count` ostaju prazni; vidljivi badge ima `aria-hidden="true"`. Nakon dodavanja nema pripremljene obavijesti, a accessible name gumba ostaje „Cart,”. [index.html:22](/C:/Users/dubra/Documents/development/E-commerce-product-page/index.html:22), [index.html:61](/C:/Users/dubra/Documents/development/E-commerce-product-page/index.html:61), [cart.js:89](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/cart.js:89). Relevantna smjernica: [W3C — Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html).
+   - **Alt tekst velike slike ne mijenja se s fotografijom.** Sve slike nasljeđuju opis prve fotografije, čak i kada prikazuju jednu tenisicu na kamenju. [gallery.js:85](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/gallery.js:85).
+   - **Otvoreni mobile menu ne izolira pozadinu od accessibility treeja.** Postojeći focus trap pomaže za Tab, ali okolni sadržaj ostaje dostupan drugim načinima navigacije. Također nema Escape zatvaranja. [menu.js:16](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/modules/menu.js:16).
+   - **Klikabilne površine ikona premalene su.** Minus je pri normalnoj širini praktično 12 × 4 px, plus 12 × 12 px, cart 22 × 20 px. Povećaj područje gumba neovisno o veličini ikone. WCAG 2.2 kriterij koristi 24 × 24 CSS px uz određene iznimke; za touch je korisno ciljati udobnije površine. [style.css:163](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:163), [W3C — Target Size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
+   - **Kontrast nekih elemenata nije dovoljan.** Bijeli tekst badgea na narančastoj ima približno **2,56:1**, a narančasti +/− na podlozi controllera **2,41:1**. To je ispod relevantnih pragova 4,5:1 za mali tekst i 3:1 za značajne grafičke kontrole. [style.css:312](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:312), [style.css:557](/C:/Users/dubra/Documents/development/E-commerce-product-page/style.css:557), [W3C — Contrast](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html), [Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html).
+   - **Focus stilovi oslanjaju se na browser.** To samo po sebi nije bug: native outline nije globalno uklonjen. Ipak, provjeri sve kontrole i dosljedan `:focus-visible`. Animacije menija i košarice također nemaju prilagodbu za reduced motion. Relevantna pravila: `style.css:206`, `style.css:228`, `style.css:287`.
+
+   Manje dorade kvalitete i dokumentacije:
+
+   - Podaci o proizvodu i slikama ponavljaju se u HTML-u i [product.js](/C:/Users/dubra/Documents/development/E-commerce-product-page/js/data/product.js:1). Trenutačno su usklađeni, ali buduća promjena može razdvojiti prikaz proizvoda i sadržaj košarice.
+   - [README.md](/C:/Users/dubra/Documents/development/E-commerce-product-page/README.md:76) ostao je starter dokument i povezuje nepostojeći `README-template.md`.
+   - [ARCHITECTURE.md](/C:/Users/dubra/Documents/development/E-commerce-product-page/ARCHITECTURE.md:53) opisuje plan migracije koji je već uglavnom proveden. Navodi drukčiji redoslijed argumenata za `trapFocus` i upravljanje lightboxom smješta drukčije od aktualne implementacije.
+   - U repozitoriju nema dokumentirane regression checkliste ni automatiziranih testova. Za završetak je najkorisnija kratka, ponovljiva provjera korisničkih tokova.
+
+4. **Preporučeni redoslijed implementacije**
+
+   Redoslijed bih postavio prema posljedicama za korisnika:
+
+   | Korak | Cilj | Kriterij dovršenosti |
+   |---|---|---|
+   | 1 | Ispraviti skriveni mobile menu i preklapanje s košaricom. | Tab ne ulazi u zatvoreni meni; otvoreni meni ima dosljedan fokus i pozadinu. |
+   | 2 | Popraviti responsive ograničenja i veličine kontrola. | Na 320 px tipke su upotrebljive; oko 1024–1110 px nema horizontalnog scrolla. |
+   | 3 | Ispraviti SVG ID konflikt i quantity submit rubni slučaj. | Dodavanje ne mijenja minus ikonu; prazna vrijednost ima jasno, dosljedno ponašanje i na Enter i na klik. |
+   | 4 | Uskladiti osnovni mobile i desktop layout. | Usporedba na 375 i 1440 px pokazuje odgovarajuće proporcije, tipografiju i razmake. |
+   | 5 | Dovršiti cart, lightbox, hover i selected izgled. | Empty/filled cart i otvoreni lightbox odgovaraju pripadajućim referencama. |
+   | 6 | Dovršiti accessibility. | Imenovane kontrole, smislen fokus, obavijesti o promjenama, odgovarajući alt tekst i kontrast. |
+   | 7 | Provesti regression provjeru. | Prođu galerija, quantity, cart, menu, lightbox i prijelazi između viewporta nakon svih izmjena. |
+   | 8 | Urediti dokumentaciju i završiti predaju. | Projektni README s uputama, screenshotom i live URL-om; provjerena objavljena verzija i predano rješenje. |
+
+   Za korak 7 obavezno ponovno provjeri: granice prve/zadnje slike, ponovljeno dodavanje istog proizvoda, praznu košaricu nakon brisanja, 0/negativni/decimalni/prazni quantity unos, Tab/Shift+Tab/Escape te resize dok su menu, cart ili lightbox otvoreni. Dodaj browser zoom i barem još jedan browser.
+
+5. **Koje datoteke ćeš vjerojatno mijenjati**
+
+   | Korak | Glavne datoteke | Opseg |
+   |---|---|---|
+   | 1 — Menu i slojevi | `js/modules/menu.js`, `style.css`, po potrebi `index.html` i `js/modules/cart.js` | Vidljivost, fokus, pozadina i odnos menija i košarice. |
+   | 2 — Responsive | `style.css` | Quantity/input dimenzije, flex ponašanje, touch površine i položaj dropdowna. |
+   | 3 — Lokalni bugovi | `index.html`, `js/modules/cart.js`; po potrebi `js/store.js` | Jedinstveni SVG identifikatori i dosljednost unosa sa stateom. |
+   | 4 — Osnovni layout | `style.css` | Header, galerija, naslov, cijene, forma i razmaci. |
+   | 5 — Interaktivni prikazi | `style.css`, po potrebi `index.html` | Lightbox, cart, hover, active/selected stanja. |
+   | 6 — Accessibility | `index.html`, `js/modules/cart.js`, `js/modules/gallery.js`, `js/modules/menu.js`, `style.css`; po potrebi `js/data/product.js` | Accessible names, obavijesti, alt tekstovi, fokus i kontrast. |
+   | 7 — Provjera | Sve prethodno promijenjene datoteke; checklistu možeš zapisati u `README.md` | Regression i cross-browser provjera. |
+   | 8 — Dokumentacija i predaja | `README.md`, `ARCHITECTURE.md` | Upute, stvarno stanje implementacije, live URL i opis naučenog. |
+
+   `images/` i `design/` već sadrže potrebne materijale. U ovom pregledu nisam pronašao potrebu za njihovom zamjenom niti za prelaskom na drugi framework.

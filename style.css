@@ -237,12 +237,17 @@ body.menu-is-open .menu-overlay {
   z-index: 50;
   width: 65vw;
   max-width: 250px;
+  visibility: hidden;
+  opacity: 0;
   transform: translateX(-100%);
-  transition: transform 0.3s ease-in;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in, visibility 0s linear 300ms;
 }
 
 body.menu-is-open .header__nav {
   transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out, visibility 0s linear 0s, transform 0.3s ease-in-out;
 }
 
 .header__close-btn {
@@ -640,6 +645,8 @@ hgroup h1 {
     background-color: inherit;
     transform: none;
     transition: transform 0.3s ease-in;
+    visibility: visible;
+    opacity: 1;
     width: auto;
     max-width: none;
     position: static;
