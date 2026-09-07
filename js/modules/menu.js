@@ -21,6 +21,10 @@ function openMenuButton(e) {
 
 function handleNavKeyDown(e) {
   if (!body.classList.contains("menu-is-open")) return;
+  if (e.key === "Escape") {
+    closeMenuButton();
+    return;
+  }
   trapFocus(e, headerNav);
 }
 
