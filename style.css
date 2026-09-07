@@ -210,7 +210,7 @@ button {
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 3;
+  z-index: 20;
   width: 100%;
   height: 100%;
   opacity: 0;
@@ -474,6 +474,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-200);
+  min-width: 0;
 }
 
 hgroup {
@@ -557,10 +558,13 @@ hgroup h1 {
   background-color: inherit;
   font-weight: var(--font-weight-bold);
   text-align: center;
+  min-width: 0;
 }
 
 .quantity-btn {
   color: var(--color-primary);
+  width: 24px;
+  flex-shrink: 0;
 }
 
 @media (width >=700px) {
@@ -612,9 +616,6 @@ hgroup h1 {
     align-items: center;
   }
 
-  .quantity-btn {
-    flex-shrink: 0;
-  }
 
   .btn-primary {
     flex: 1;
