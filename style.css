@@ -564,7 +564,11 @@ hgroup h1 {
 .quantity-btn {
   color: var(--color-primary);
   width: 24px;
+  height: 24px;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (width >=700px) {
