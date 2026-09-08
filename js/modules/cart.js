@@ -47,7 +47,6 @@ export function initCart() {
   productQuantityInput.addEventListener("blur", (e) => {
     const rawValue = e.target.value;
     if (rawValue === "") {
-      e.target.value = getSelectedQuantity();
       return;
     }
     const value = Number(rawValue);
@@ -67,7 +66,10 @@ export function initCart() {
 
   addToCartForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
+    console.log(productQuantityInput.value);
+    if (productQuantityInput.value === "") {
+      return;
+    }
     const { images, ...cartItem } = product;
     cartItem.quantity = getSelectedQuantity();
     cartItem.thumbnail = images[0].thumbnail;
