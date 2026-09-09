@@ -22,6 +22,7 @@ export function initCart() {
   const cartScreenReaderCount = document.getElementById(
     "cart-screen-reader-count",
   );
+  const announcementRegion = document.getElementById("live-region");
 
   renderCartState(getCart());
 
@@ -77,7 +78,10 @@ export function initCart() {
     cartItem.quantity = getSelectedQuantity();
     cartItem.thumbnail = images[0].thumbnail;
     const wasItemAddedToCart = addToCart(cartItem);
-    if (wasItemAddedToCart) updateQuantity(0);
+    if (wasItemAddedToCart) {
+      announcementRegion.textContent = `Cart updated. ${getTotalQuantity()} ${getTotalQuantity() === 1 ? "item" : "items"} in cart.`;
+      updateQuantity(0);
+    }
   });
 
   cartItemsList.addEventListener("click", (e) => {
