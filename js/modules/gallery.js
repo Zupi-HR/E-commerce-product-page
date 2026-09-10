@@ -1,3 +1,5 @@
+import { product } from "../data/product.js";
+
 const state = {
   thumbnailCount: null,
   currentIndex: 0,
@@ -82,8 +84,9 @@ export function initGallery(root, onImageChangeRequest, onLightboxOpen) {
     onImageChangeRequest(requestedIndex);
   }
 
-  function updateMainImage(imgSrc) {
+  function updateMainImage(imgSrc, imgAlt) {
     mainImg.src = imgSrc;
+    mainImg.alt = imgAlt;
   }
 
   function updateGalleryView(index) {
@@ -94,7 +97,7 @@ export function initGallery(root, onImageChangeRequest, onLightboxOpen) {
     const activeThumbnail = Array.from(thumbnails).at(index);
 
     activeThumbnail.setAttribute("aria-current", "true");
-    updateMainImage(activeThumbnail.dataset.image);
+    updateMainImage(activeThumbnail.dataset.image, product.images[index].alt);
   }
   return updateGalleryView;
 }
