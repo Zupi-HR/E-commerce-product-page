@@ -4,19 +4,31 @@ const body = document.querySelector("body");
 const headerNav = document.querySelector(".header__nav");
 const openMenuBtn = document.querySelector(".header__menu-btn");
 const closeMenuBtn = document.getElementById("close-menu-btn");
+const headerLogo = document.querySelector(".header__logo");
+const headerUserControls = document.querySelector(".header__user-controls");
 const overlay = document.getElementById("menu-overlay");
 const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
+const mainEl = document.querySelector("main");
 
 function closeMenuButton() {
   body.classList.remove("menu-is-open");
   openMenuBtn.setAttribute("aria-expanded", "false");
+  setPageContentInert(false);
   restoreFocus(openMenuBtn);
 }
 
-function openMenuButton(e) {
+function openMenuButton() {
   body.classList.add("menu-is-open");
   openMenuBtn.setAttribute("aria-expanded", "true");
   closeMenuBtn.focus();
+  setPageContentInert(true);
+}
+
+function setPageContentInert(isInert) {
+  headerLogo.inert = isInert;
+  headerUserControls.inert = isInert;
+  mainEl.inert = isInert;
+  openMenuBtn.inert = isInert;
 }
 
 function handleNavKeyDown(e) {
@@ -32,6 +44,7 @@ function handleResolutionChange(event) {
   if (event.matches) {
     body.classList.remove("menu-is-open");
     openMenuBtn.setAttribute("aria-expanded", "false");
+    setPageContentInert(false);
   }
 }
 
