@@ -722,4 +722,8 @@ hgroup h1 {
     margin: 0;
     padding: 0;
   }
+
+  hgroup h1 {
+    font-size: var(--fs-heading-lg);
+  }
 }
